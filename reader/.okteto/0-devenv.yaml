@@ -1,0 +1,12 @@
+name: reader-deployment
+namespace: reader
+
+image: golang:1.17-buster
+command: bash
+
+workdir: /code
+sync:
+  - ..:/code
+
+forward:
+  - 8080:3000
