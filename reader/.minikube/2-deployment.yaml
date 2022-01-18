@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reader-deployment
+  namespace: reader
+  labels:
+    app: reader
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: reader
+  template:
+    metadata:
+      labels:
+        app: reader
+    spec:
+      containers:
+      - name: reader
+        image: reader:latest
+        imagePullPolicy: Never
+        env:
+        - name: KEY_VALUE_SERVICE
+          value: key-value-service.key-value
+        ports:
+        - containerPort: 3000

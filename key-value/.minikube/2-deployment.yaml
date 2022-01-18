@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: key-value-deployment
+  namespace: key-value
+  labels:
+    app: key-value
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: key-value
+  template:
+    metadata:
+      labels:
+        app: key-value
+    spec:
+      containers:
+      - name: key-value
+        image: key-value:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
